@@ -15,9 +15,9 @@ class RecomendsPlants extends StatelessWidget {
       child: Row(
         children: <Widget>[
           RecomendPlantCard(
-            image: "assets/images/image_1.png",
-            title: "Samantha",
-            country: "Russia",
+            image: 'assets/images/image_1.png',
+            title: 'Samantha',
+            country: 'Russia',
             price: 440,
             press: () {
               Navigator.push(
@@ -29,9 +29,9 @@ class RecomendsPlants extends StatelessWidget {
             },
           ),
           RecomendPlantCard(
-            image: "assets/images/image_2.png",
-            title: "Angelica",
-            country: "Russia",
+            image: 'assets/images/image_2.png',
+            title: 'Angelica',
+            country: 'Russia',
             price: 440,
             press: () {
               Navigator.push(
@@ -43,9 +43,9 @@ class RecomendsPlants extends StatelessWidget {
             },
           ),
           RecomendPlantCard(
-            image: "assets/images/image_3.png",
-            title: "Samantha",
-            country: "Russia",
+            image: 'assets/images/image_3.png',
+            title: 'Samantha',
+            country: 'Russia',
             price: 440,
             press: () {},
           ),
@@ -106,10 +106,10 @@ class RecomendPlantCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                            text: "$title\n".toUpperCase(),
+                            text: '$title\n'.toUpperCase(),
                             style: Theme.of(context).textTheme.button),
                         TextSpan(
-                          text: "$country".toUpperCase(),
+                          text: '$country'.toUpperCase(),
                           style: TextStyle(
                             color: kPrimaryColor.withOpacity(0.5),
                           ),

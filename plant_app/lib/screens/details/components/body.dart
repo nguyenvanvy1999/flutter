@@ -12,23 +12,25 @@ class Body extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ImageAndIcons(size: size),
-          TitleAndPrice(title: "Angelica", country: "Russia", price: 440),
+          TitleAndPrice(title: 'Angelica', country: 'Russia', price: 440),
           SizedBox(height: kDefaultPadding),
           Row(
             children: <Widget>[
               SizedBox(
                 width: size.width / 2,
                 height: 84,
-                child: FlatButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(20),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                      ),
                     ),
+                    backgroundColor: kPrimaryColor,
                   ),
-                  color: kPrimaryColor,
                   onPressed: () {},
                   child: Text(
-                    "Buy Now",
+                    'Buy Now',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -37,9 +39,9 @@ class Body extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {},
-                  child: Text("Description"),
+                  child: Text('Description'),
                 ),
               ),
             ],

@@ -23,7 +23,7 @@ class TitleAndPrice extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "$title\n",
+                  text: '$title\n',
                   style: Theme.of(context)
                       .textTheme
                       .headline4
@@ -42,7 +42,7 @@ class TitleAndPrice extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "\$$price",
+            '\$$price',
             style: Theme.of(context)
                 .textTheme
                 .headline5
