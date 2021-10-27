@@ -13,5 +13,7 @@
       "name": "test"
     }
   ],
-  "settings": {}
+  "settings": {
+    "cSpell.words": ["cupertino", "Schyler"]
+  }
 }
