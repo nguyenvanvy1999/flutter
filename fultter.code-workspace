@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "plant_app",
+      "name": "plant_app"
+    },
+    {
+      "path": "shop_app",
+      "name": "shop_app"
+    },
+    {
+      "path": "flutter_application_1",
+      "name": "test"
+    }
+  ],
+  "settings": {}
+}
