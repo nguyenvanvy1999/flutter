@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:getx/constants.dart';
-import 'package:getx/models/product.dart';
-import 'package:getx/screens/details/details_screen.dart';
-
+import 'package:shop/constants.dart';
+import 'package:shop/models/product.dart';
+import 'package:shop/screens/details/details_screen.dart';
 import 'categorries.dart';
 import 'item_card.dart';
 

@@ -1,4 +1,4 @@
-# getx
+# shop
 
 A new Flutter project.
 

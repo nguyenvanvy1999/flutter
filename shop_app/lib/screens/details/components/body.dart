@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:getx/constants.dart';
-import 'package:getx/models/product.dart';
-
+import 'package:shop/constants.dart';
+import 'package:shop/models/product.dart';
 import 'add_to_cart.dart';
 import 'color_and_size.dart';
 import 'counter_with_fav_btn.dart';
