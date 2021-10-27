@@ -7,6 +7,8 @@ import 'recomend_plants.dart';
 import 'title_with_more_bbtn.dart';
 
 class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // It will provie us total height  and width of our screen
@@ -18,10 +20,10 @@ class Body extends StatelessWidget {
         children: <Widget>[
           HeaderWithSearchBox(size: size),
           TitleWithMoreBtn(title: 'Recomended', press: () {}),
-          RecomendsPlants(),
+          const RecomendsPlants(),
           TitleWithMoreBtn(title: 'Featured Plants', press: () {}),
-          FeaturedPlants(),
-          SizedBox(height: kDefaultPadding),
+          const FeaturedPlants(),
+          const SizedBox(height: kDefaultPadding),
         ],
       ),
     );
