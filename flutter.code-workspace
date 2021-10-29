@@ -9,9 +9,10 @@
       "name": "shop_app"
     },
     {
-      "path": "flutter_application_1",
-      "name": "test"
-    }
+      "path": "daily_exercises",
+      "name": "daily_exercises"
+    },
+    
   ],
   "settings": {
     "cSpell.words": ["cupertino", "Schyler"]
