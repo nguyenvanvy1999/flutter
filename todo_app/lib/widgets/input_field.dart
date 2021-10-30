@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:todo_app/constants/text_style.dart';
 
 class MyInputField extends StatelessWidget {
@@ -24,7 +25,8 @@ class MyInputField extends StatelessWidget {
         children: [
           Text(title, style: titleStyle),
           Container(
-            height: 60,
+            height: 52,
+            padding: const EdgeInsets.only(left: 14),
             margin: const EdgeInsets.only(top: 8),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey, width: 1),
@@ -32,8 +34,30 @@ class MyInputField extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: TextFormField(),
+                  child: TextFormField(
+                    readOnly: widget == null ? false : true,
+                    autofocus: false,
+                    cursorColor:
+                        Get.isDarkMode ? Colors.grey[100] : Colors.grey[600],
+                    style: subTitleStyle,
+                    controller: controller,
+                    decoration: InputDecoration(
+                      hintText: hint,
+                      hintStyle: subTitleStyle,
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: context.theme.backgroundColor, width: 0)),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: context.theme.backgroundColor, width: 0)),
+                    ),
+                  ),
                 ),
+                widget == null
+                    ? Container()
+                    : Container(
+                        child: widget,
+                      )
               ],
             ),
           )

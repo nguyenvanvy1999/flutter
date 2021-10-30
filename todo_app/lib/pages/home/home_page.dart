@@ -29,6 +29,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
+      backgroundColor: context.theme.backgroundColor,
       body: Column(
         children: <Widget>[const TaskBar(), DatePickerTimeline()],
       ),
