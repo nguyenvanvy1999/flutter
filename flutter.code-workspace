@@ -12,7 +12,10 @@
       "path": "daily_exercises",
       "name": "daily_exercises"
     },
-    
+    {
+      "path": "todo_app",
+      "name": "todo_app"
+    }
   ],
   "settings": {
     "cSpell.words": ["cupertino", "Schyler"]
