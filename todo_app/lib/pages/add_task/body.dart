@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/constants/date_time.dart';
 import 'package:todo_app/constants/text_style.dart';
 import 'package:todo_app/constants/themes.dart';
-import 'package:todo_app/services/calendar_service.dart';
+import 'package:todo_app/controllers/add_task.dart';
 import 'package:todo_app/widgets/button.dart';
 import 'package:todo_app/widgets/input_field.dart';
 
-class AddTaskBody extends StatefulWidget {
-  const AddTaskBody({Key? key}) : super(key: key);
-
+class AddTaskBody extends GetWidget<AddTaskController> {
   @override
-  AddTaskBodyState createState() => AddTaskBodyState();
-}
+  final AddTaskController controller = Get.put(AddTaskController());
 
-class AddTaskBodyState extends State<AddTaskBody> {
-  DateTime selectedDate = DateTime.now();
-  String startTime = DateFormat('hh:mm a').format(DateTime.now());
-  String endTime = '11:00 PM';
-  int selectedRemind = 5;
-  String selectedRepeat = 'None';
-  int selectedColor = 1;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
+
+  AddTaskBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,101 +38,96 @@ class AddTaskBodyState extends State<AddTaskBody> {
                 title: 'Note',
                 hint: 'Enter your note',
                 controller: noteController),
-            MyInputField(
-              title: 'Date',
-              hint: DateFormat.yMd().format(selectedDate),
-              widget: IconButton(
-                icon: const Icon(
-                  Icons.calendar_today_outlined,
-                  color: Colors.grey,
-                ),
-                onPressed: () async {
-                  var pickedDate = await getDateFromUser(context);
-                  setState(() => selectedDate = pickedDate);
-                },
+            Obx(
+              () => MyInputField(
+                title: 'Date',
+                hint: DateFormat.yMd().format(controller.selectedDate.value),
+                widget: IconButton(
+                    icon: const Icon(
+                      Icons.calendar_today_outlined,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () async => controller.setDateSelected(context)),
               ),
             ),
+            // MyDatePicker(),
             Row(
               children: [
                 Expanded(
-                    child: MyInputField(
-                  title: 'Start Time',
-                  hint: startTime,
-                  widget: IconButton(
-                    icon: const Icon(Icons.access_time, color: Colors.grey),
-                    onPressed: () async {
-                      var pickedTime =
-                          await getTimeFromUser(context, startTime);
-                      setState(() => startTime = pickedTime);
-                    },
-                  ),
-                )),
+                    child: Obx(() => MyInputField(
+                          title: 'Start Time',
+                          hint: controller.startTime.value,
+                          widget: IconButton(
+                            icon: const Icon(Icons.access_time,
+                                color: Colors.grey),
+                            onPressed: () async =>
+                                controller.setStartTimeSelected(context),
+                          ),
+                        ))),
                 const SizedBox(width: 12),
                 Expanded(
-                    child: MyInputField(
-                  title: 'End Time',
-                  hint: endTime,
-                  widget: IconButton(
-                    icon: const Icon(Icons.access_time, color: Colors.grey),
-                    onPressed: () async {
-                      var pickedTime = await getTimeFromUser(context, endTime);
-                      setState(() => endTime = pickedTime);
-                    },
-                  ),
-                ))
+                    child: Obx(() => MyInputField(
+                          title: 'End Time',
+                          hint: controller.endTime.value,
+                          widget: IconButton(
+                              icon: const Icon(Icons.access_time,
+                                  color: Colors.grey),
+                              onPressed: () async =>
+                                  controller.setEndTimeSelected(context)),
+                        )))
               ],
             ),
-            MyInputField(
-              title: 'Remind',
-              hint: '$selectedRemind minutes early',
-              widget: DropdownButton(
-                icon: const Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.grey,
-                ),
-                iconSize: 32,
-                elevation: 6,
-                style: subTitleStyle,
-                underline: Container(
-                  height: 0,
-                ),
-                onChanged: (String? newValue) =>
-                    setState(() => selectedRemind = int.parse(newValue!)),
-                items: remindList
-                    .map<DropdownMenuItem<String>>(
-                        (int e) => DropdownMenuItem<String>(
-                              value: e.toString(),
-                              child: Text(e.toString()),
-                            ))
-                    .toList(),
-              ),
-            ),
-            MyInputField(
-              title: 'Repeat',
-              hint: selectedRepeat,
-              widget: DropdownButton(
-                icon: const Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.grey,
-                ),
-                iconSize: 32,
-                elevation: 4,
-                style: subTitleStyle,
-                underline: Container(
-                  height: 0,
-                ),
-                onChanged: (String? newValue) =>
-                    setState(() => selectedRepeat = newValue!),
-                items: repeatList
-                    .map<DropdownMenuItem<String>>(
-                        (String e) => DropdownMenuItem<String>(
+            Obx(() => MyInputField(
+                  title: 'Remind',
+                  hint: '$controller.selectedRemind.value minutes early',
+                  widget: DropdownButton(
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.grey,
+                    ),
+                    iconSize: 32,
+                    elevation: 6,
+                    style: subTitleStyle,
+                    underline: Container(
+                      height: 0,
+                    ),
+                    onChanged: (String? newValue) =>
+                        controller.setRemindSelected(newValue),
+                    items: remindList
+                        .map<DropdownMenuItem<String>>(
+                            (int e) => DropdownMenuItem<String>(
+                                  value: e.toString(),
+                                  child: Text(e.toString()),
+                                ))
+                        .toList(),
+                  ),
+                )),
+            Obx(() => MyInputField(
+                  title: 'Repeat',
+                  hint: controller.selectedRepeat.value,
+                  widget: DropdownButton(
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.grey,
+                    ),
+                    iconSize: 32,
+                    elevation: 4,
+                    style: subTitleStyle,
+                    underline: Container(
+                      height: 0,
+                    ),
+                    onChanged: (String? newValue) =>
+                        controller.setRepeatSelected(newValue),
+                    items: repeatList
+                        .map<DropdownMenuItem<String>>((String e) =>
+                            DropdownMenuItem<String>(
                               value: e,
                               child: Text(e,
                                   style: const TextStyle(color: Colors.grey)),
                             ))
-                    .toList(),
-              ),
-            ),
+                        .toList(),
+                  ),
+                )),
             const SizedBox(
               height: 18,
             ),
@@ -157,9 +145,9 @@ class AddTaskBodyState extends State<AddTaskBody> {
                     Wrap(
                         children: List<Widget>.generate(
                             3,
-                            (int index) => GestureDetector(
+                            (int index) => Obx(() => GestureDetector(
                                   onTap: () =>
-                                      setState(() => selectedColor = index),
+                                      controller.setColorSelected(index),
                                   child: Padding(
                                       padding: const EdgeInsets.only(right: 8),
                                       child: CircleAvatar(
@@ -169,14 +157,16 @@ class AddTaskBodyState extends State<AddTaskBody> {
                                               : index == 1
                                                   ? pinkClr
                                                   : yellowClr,
-                                          child: selectedColor == index
-                                              ? const Icon(
-                                                  Icons.done,
-                                                  color: Colors.white,
-                                                  size: 16,
-                                                )
-                                              : Container())),
-                                )))
+                                          child:
+                                              controller.selectedColor.value ==
+                                                      index
+                                                  ? const Icon(
+                                                      Icons.done,
+                                                      color: Colors.white,
+                                                      size: 16,
+                                                    )
+                                                  : Container())),
+                                ))))
                   ],
                 ),
                 MyButton(label: 'Create Task', onTap: () => null),
