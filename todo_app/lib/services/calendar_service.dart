@@ -10,11 +10,14 @@ Future<DateTime> getDateFromUser(BuildContext context) async {
   return pickedDate ?? DateTime.now();
 }
 
-Future<String> getTimeFromUser(BuildContext context, String startTime) async {
-  var pickedTime = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay(
-          hour: int.parse(startTime.split(':')[0]),
-          minute: int.parse(startTime.split(':')[1].split(' ')[0])));
-  return pickedTime!.format(context);
+Future<String> getTimeFromUser(
+  BuildContext context,
+  String startTime,
+) async {
+  TimeOfDay defaultTime = TimeOfDay(
+      hour: int.parse(startTime.split(':')[0]),
+      minute: int.parse(startTime.split(':')[1].split(' ')[0]));
+  TimeOfDay? pickedTime =
+      await showTimePicker(context: context, initialTime: defaultTime);
+  return (pickedTime ?? defaultTime).format(context);
 }
