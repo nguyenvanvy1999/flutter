@@ -18,6 +18,12 @@
     }
   ],
   "settings": {
-    "cSpell.words": ["cupertino", "Schyler"]
+    "cSpell.words": [
+			"appicon",
+			"AUTOINCREMENT",
+			"cupertino",
+			"Schyler",
+			"sqflite"
+		]
   }
 }
