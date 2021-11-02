@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/constants/themes.dart';
-import 'package:todo_app/services/date_picker_service.dart';
+import 'package:todo_app/controllers/task_controller.dart';
 
 class DatePickerTimeline extends StatelessWidget {
-  final box = GetStorage();
+  final TaskController taskController = Get.put(TaskController());
   DatePickerTimeline({
     Key? key,
   }) : super(key: key);
@@ -31,8 +31,10 @@ class DatePickerTimeline extends StatelessWidget {
         monthTextStyle: GoogleFonts.lato(
             textStyle: const TextStyle(
                 fontSize: 12, fontWeight: FontWeight.w600, color: Colors.grey)),
-        onDateChange: (date) =>
-            DatePickerService().saveSelectedDateToBox(date.toString()),
+        onDateChange: (date) {
+          taskController.updateDate(date);
+          taskController.getTask();
+        },
       ),
     );
   }

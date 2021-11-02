@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app/controllers/task_controller.dart';
 import 'package:todo_app/widgets/button.dart';
 import 'package:todo_app/constants/text_style.dart';
 import 'package:todo_app/pages/add_task/add_task.dart';
 import 'package:get/get.dart';
 
 class TaskBar extends StatelessWidget {
-  const TaskBar({Key? key}) : super(key: key);
+  TaskBar({Key? key}) : super(key: key);
+  final TaskController taskController = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,10 @@ class TaskBar extends StatelessWidget {
                     ])),
             MyButton(
               label: '+ Add Task',
-              onTap: () => Get.to(() => const AddTask()),
+              onTap: () async {
+                await Get.to(() => const AddTask());
+                taskController.getTask();
+              },
             )
           ],
         ));

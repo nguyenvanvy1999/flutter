@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/pages/home/date_picker.dart';
+import 'package:todo_app/pages/home/show_task.dart';
 import 'package:todo_app/pages/home/task_bar.dart';
 import 'package:todo_app/services/notification_service.dart';
 import 'package:todo_app/services/theme_service.dart';
@@ -31,7 +32,12 @@ class HomePageState extends State<HomePage> {
       appBar: appBar(),
       backgroundColor: context.theme.backgroundColor,
       body: Column(
-        children: <Widget>[const TaskBar(), DatePickerTimeline()],
+        children: <Widget>[
+          TaskBar(),
+          DatePickerTimeline(),
+          const SizedBox(height: 10),
+          ShowTask()
+        ],
       ),
     );
   }
