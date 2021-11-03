@@ -15,6 +15,10 @@
     {
       "path": "todo_app",
       "name": "todo_app"
+    },
+    {
+      "path": "todo-app-be",
+      "name": "todo-app-be"
     }
   ],
   "settings": {
