@@ -19,15 +19,17 @@
     {
       "path": "todo-app-be",
       "name": "todo-app-be"
+    },
+    {
+      "path": "signin_firebase",
+      "name": "signin_firebase"
+    },
+    {
+      "path": "web_dashboard",
+      "name": "web_dashboard"
     }
   ],
   "settings": {
-    "cSpell.words": [
-			"appicon",
-			"AUTOINCREMENT",
-			"cupertino",
-			"Schyler",
-			"sqflite"
-		]
+    "cSpell.words": ["appicon", "AUTOINCREMENT", "camelcase", "cupertino", "loginbtn", "loginimg", "Schyler", "sqflite"]
   }
 }
