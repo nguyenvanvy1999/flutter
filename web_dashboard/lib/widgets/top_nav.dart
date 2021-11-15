@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:web_dashboard/constants/colors.dart';
+import 'package:web_dashboard/constants/style.dart';
 import 'package:web_dashboard/helpers/responsive.dart';
+
 import 'custom_text.dart';
 
 AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
@@ -17,12 +18,16 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                 ),
               ],
             )
-          : IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
+          : IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                key.currentState!.openDrawer();
+              }),
       title: Row(
         children: [
           Visibility(
               visible: !ResponsiveWidget.isSmallScreen(context),
-              child: const CustomText(
+              child: CustomText(
                 text: 'Dash',
                 color: lightGrey,
                 size: 20,
@@ -30,7 +35,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               )),
           Expanded(child: Container()),
           IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.settings,
                 color: dark,
               ),
@@ -64,7 +69,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
             color: lightGrey,
           ),
           const SizedBox(width: 24),
-          const CustomText(
+          CustomText(
             text: 'Nguyen Van Vy',
             color: lightGrey,
           ),
@@ -78,7 +83,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                   color: Colors.white, borderRadius: BorderRadius.circular(30)),
               padding: const EdgeInsets.all(2),
               margin: const EdgeInsets.all(2),
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 backgroundColor: light,
                 child: Icon(
                   Icons.person_outline,
@@ -89,7 +94,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
           )
         ],
       ),
-      iconTheme: const IconThemeData(color: dark),
+      iconTheme: IconThemeData(color: dark),
       elevation: 0,
       backgroundColor: Colors.transparent,
     );

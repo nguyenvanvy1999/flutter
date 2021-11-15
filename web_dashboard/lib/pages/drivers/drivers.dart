@@ -1,13 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:web_dashboard/constants/controllers.dart';
+import 'package:web_dashboard/helpers/responsive.dart';
+import 'package:web_dashboard/pages/drivers/widgets/drivers_table.dart';
+import 'package:web_dashboard/widgets/custom_text.dart';
+import 'package:get/get.dart';
 
 class DriversPage extends StatelessWidget {
   const DriversPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      child: const Text('Driver'),
+    return Column(
+      children: [
+        Obx(
+          () => Row(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(
+                      top: ResponsiveWidget.isSmallScreen(context) ? 56 : 6),
+                  child: CustomText(
+                    text: menuController.activeItem.value,
+                    size: 24,
+                    weight: FontWeight.bold,
+                  )),
+            ],
+          ),
+        ),
+        Expanded(
+            child: ListView(
+          children: const [DriversTable()],
+        )),
+      ],
     );
   }
 }

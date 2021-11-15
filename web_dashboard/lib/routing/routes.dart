@@ -13,10 +13,10 @@ const authenticationPageDisplayName = 'Log out';
 const authenticationPageRoute = '/auth';
 
 class MenuItem {
+  MenuItem(this.name, this.route);
+
   final String name;
   final String route;
-
-  MenuItem(this.name, this.route);
 }
 
 List<MenuItem> sideMenuItemRoutes = [

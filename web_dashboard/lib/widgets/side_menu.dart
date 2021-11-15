@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:web_dashboard/constants/colors.dart';
-import 'package:web_dashboard/constants/controller.dart';
-import 'package:web_dashboard/constants/routes.dart';
+import 'package:web_dashboard/constants/controllers.dart';
+import 'package:web_dashboard/constants/style.dart';
 import 'package:web_dashboard/helpers/responsive.dart';
+import 'package:web_dashboard/routing/routes.dart';
 import 'package:web_dashboard/widgets/custom_text.dart';
 import 'package:web_dashboard/widgets/side_menu_item.dart';
+import 'package:get/get.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class SideMenu extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 12),
                       child: Image.asset('assets/icons/logo.png'),
                     ),
-                    const Flexible(
+                    Flexible(
                       child: CustomText(
                         text: 'Dash',
                         size: 20,
@@ -49,16 +49,19 @@ class SideMenu extends StatelessWidget {
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
-            children: sideMenuItems
+            children: sideMenuItemRoutes
                 .map((item) => SideMenuItem(
-                    itemName: item,
+                    itemName: item.name,
                     onTap: () {
-                      if (item == authenticationPageRoute) {}
-                      if (!menuController.isActive(item)) {
-                        menuController.changeActiveItemTo(item);
-                        if (ResponsiveWidget.isSmallScreen(context)) {
-                          Get.back();
-                        }
+                      if (item.route == authenticationPageRoute) {
+                        Get.offAllNamed(authenticationPageRoute);
+                        menuController
+                            .changeActiveItemTo(overviewPageDisplayName);
+                      }
+                      if (!menuController.isActive(item.name)) {
+                        menuController.changeActiveItemTo(item.name);
+                        if (ResponsiveWidget.isSmallScreen(context)) Get.back();
+                        navigationController.navigateTo(item.route);
                       }
                     }))
                 .toList(),

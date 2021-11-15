@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:web_dashboard/constants/controllers.dart';
 import 'package:get/get.dart';
-import 'package:web_dashboard/constants/colors.dart';
-import 'package:web_dashboard/constants/controller.dart';
+import 'package:web_dashboard/constants/style.dart';
 
 import 'custom_text.dart';
 
@@ -10,8 +10,8 @@ class VerticalMenuItem extends StatelessWidget {
       {Key? key, required this.itemName, required this.onTap})
       : super(key: key);
 
-  final String itemName;
   final Function()? onTap;
+  final String itemName;
 
   @override
   Widget build(BuildContext context) {

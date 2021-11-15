@@ -1,20 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:web_dashboard/constants/routes.dart';
 import 'package:web_dashboard/pages/clients/clients.dart';
 import 'package:web_dashboard/pages/drivers/drivers.dart';
 import 'package:web_dashboard/pages/overview/overview.dart';
+import 'package:web_dashboard/routing/routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case overViewPageRoute:
-      return getPageRoute(const OverViewPage());
+    case overviewPageRoute:
+      return getPageRoute(const OverviewPage());
     case driversPageRoute:
       return getPageRoute(const DriversPage());
     case clientsPageRoute:
       return getPageRoute(const ClientsPage());
     default:
-      return getPageRoute(const OverViewPage());
+      return getPageRoute(const OverviewPage());
   }
 }
 
