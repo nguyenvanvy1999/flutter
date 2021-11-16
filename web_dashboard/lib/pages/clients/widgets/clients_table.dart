@@ -4,8 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:web_dashboard/constants/style.dart';
 import 'package:web_dashboard/widgets/custom_text.dart';
 
-class Clientstable extends StatelessWidget {
-  const Clientstable({Key? key}) : super(key: key);
+class ClientsTable extends StatelessWidget {
+  const ClientsTable({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

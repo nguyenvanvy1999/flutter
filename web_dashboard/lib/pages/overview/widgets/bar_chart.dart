@@ -1,4 +1,3 @@
-/// Bar chart example
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:web_dashboard/constants/style.dart';
@@ -25,7 +24,6 @@ class SimpleBarChart extends StatelessWidget {
     );
   }
 
-  /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
     final data = [
       OrdinalSales('Today', 55),
@@ -49,7 +47,6 @@ class SimpleBarChart extends StatelessWidget {
   }
 }
 
-/// Sample ordinal data type.
 class OrdinalSales {
   final String year;
   final int sales;

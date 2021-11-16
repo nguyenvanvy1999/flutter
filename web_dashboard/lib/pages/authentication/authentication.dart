@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AuthenticationPage extends StatelessWidget {
   const AuthenticationPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +55,14 @@ class AuthenticationPage extends StatelessWidget {
               const SizedBox(height: 15),
               TextField(
                 obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
                 decoration: InputDecoration(
-                    labelText: 'Password',
-                    hintText: '123',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
+                  labelText: 'Password',
+                  hintText: '123',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
               ),
               const SizedBox(height: 15),
               Row(

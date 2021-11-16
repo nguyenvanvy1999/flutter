@@ -24,19 +24,25 @@ class MenuController extends GetxController {
   Widget returnIconFor(String itemName) {
     switch (itemName) {
       case overviewPageDisplayName:
-        return _customIcon(Icons.trending_up, itemName);
+        return customIcon(Icons.trending_up, itemName);
       case driversPageDisplayName:
-        return _customIcon(Icons.drive_eta, itemName);
+        return customIcon(Icons.drive_eta, itemName);
       case clientsPageDisplayName:
-        return _customIcon(Icons.people_alt_outlined, itemName);
+        return customIcon(Icons.people_alt_outlined, itemName);
       case authenticationPageDisplayName:
-        return _customIcon(Icons.exit_to_app, itemName);
+        return customIcon(Icons.exit_to_app, itemName);
+      case permissionsPageDisplayName:
+        return customIcon(Icons.security_outlined, itemName);
+      case rolesPageDisplayName:
+        return customIcon(Icons.perm_identity, itemName);
+      case usersPageDisplayName:
+        return customIcon(Icons.people_alt_outlined, itemName);
       default:
-        return _customIcon(Icons.exit_to_app, itemName);
+        return customIcon(Icons.exit_to_app, itemName);
     }
   }
 
-  Widget _customIcon(IconData icon, String itemName) {
+  Widget customIcon(IconData icon, String itemName) {
     if (isActive(itemName)) return Icon(icon, size: 22, color: dark);
 
     return Icon(

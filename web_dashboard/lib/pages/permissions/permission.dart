@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:web_dashboard/constants/controllers.dart';
 import 'package:web_dashboard/helpers/responsive.dart';
-import 'package:web_dashboard/pages/clients/widgets/clients_table.dart';
+import 'package:web_dashboard/pages/permissions/widgets/permission_table.dart';
 import 'package:web_dashboard/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
-class ClientsPage extends StatelessWidget {
-  const ClientsPage({Key? key}) : super(key: key);
+class PermissionsPage extends StatelessWidget {
+  const PermissionsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ClientsPage extends StatelessWidget {
         Expanded(
             child: ListView(
           children: const [
-            ClientsTable(),
+            PermissionTable(),
           ],
         )),
       ],
