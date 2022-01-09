@@ -4,7 +4,9 @@ class AuthenticationController extends GetxController {
   static AuthenticationController instance = Get.find();
   RxBool isObscure = true.obs;
 
-  changeObscureStatus(bool obscure) {
+  void changeObscureStatus(bool obscure) {
     isObscure.value = obscure;
   }
+
+  void login() {}
 }
