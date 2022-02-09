@@ -36,7 +36,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         text: 'Ha Noi',
                         color: Colors.black54,
                       ),
-                      const Icon(Icons.arrow_drop_down_circle_sharp)
+                      const Icon(Icons.arrow_drop_down)
                     ],
                   )
                 ],
