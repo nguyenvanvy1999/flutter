@@ -59,6 +59,68 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               borderRadius: BorderRadius.circular(5.0),
             ),
           ),
+        ),
+        SizedBox(
+          height: AppDimension.height30,
+        ),
+        Container(
+          margin: EdgeInsets.only(left: AppDimension.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: 'Popular'),
+              SizedBox(
+                width: AppDimension.width10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(
+                  text: '.',
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(
+                width: AppDimension.width10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(
+                  text: 'Food pairing',
+                  color: Colors.black87,
+                ),
+              )
+            ],
+          ),
+        ),
+        Container(
+          height: 1200,
+          child: ListView.builder(
+            itemCount: 10,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.only(
+                    left: AppDimension.width20,
+                    right: AppDimension.width20,
+                    bottom: AppDimension.height10),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(AppDimension.radius20),
+                          color: Colors.white38,
+                          image: const DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/image/food0.png'))),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
         )
       ],
     );
@@ -92,9 +154,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           Container(
             height: AppDimension.pageViewContainer,
-            margin: const EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(
+                left: AppDimension.width10, right: AppDimension.width10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(AppDimension.radius30),
                 color: index.isEven
                     ? const Color(0xff69c5df)
                     : const Color(0xff9294cc),
@@ -106,9 +169,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: AppDimension.pageViewTextContainer,
-              margin: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
+              margin: EdgeInsets.only(
+                  left: AppDimension.width30,
+                  right: AppDimension.width30,
+                  bottom: AppDimension.height30),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(AppDimension.radius30),
                   color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
@@ -119,7 +185,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     BoxShadow(color: Colors.white, offset: Offset(5, 0))
                   ]),
               child: Container(
-                padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                padding: EdgeInsets.only(
+                    top: AppDimension.height15,
+                    left: AppDimension.height15,
+                    right: AppDimension.height15),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -136,14 +205,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                       size: 15,
                                     )),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: AppDimension.height10),
                           SmallText(text: '4.5'),
-                          const SizedBox(width: 10),
+                          SizedBox(width: AppDimension.height10),
                           SmallText(text: '1287'),
                           SmallText(text: ' comments')
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: AppDimension.height20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
