@@ -11,7 +11,7 @@ class SmallText extends StatelessWidget {
       required this.text,
       this.size = 12,
       this.height = 1.2,
-      this.color = AppColors.mainColor})
+      this.color = AppColors.textColor})
       : super(key: key);
 
   @override
