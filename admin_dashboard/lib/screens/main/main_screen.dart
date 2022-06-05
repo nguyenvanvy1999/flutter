@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/screens/main/components/side_menu.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -7,9 +8,15 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Container(
-        color: Colors.red,
-      )),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(
+              child: SideMenu(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
