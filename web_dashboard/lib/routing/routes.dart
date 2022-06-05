@@ -21,6 +21,8 @@ const String usersPageRoute = '/users';
 const String authenticationPageDisplayName = 'Log out';
 const String authenticationPageRoute = '/auth';
 
+const String editPermissionPageRouter = '/edit-permission';
+
 class MenuItem {
   MenuItem(this.name, this.route);
 

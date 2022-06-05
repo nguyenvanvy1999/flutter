@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:web_dashboard/constants/controllers.dart';
 import 'package:web_dashboard/constants/style.dart';
+import 'package:web_dashboard/routing/routes.dart';
 import 'package:web_dashboard/widgets/custom_text.dart';
 
 class PermissionTable extends StatelessWidget {
@@ -95,7 +96,10 @@ class PermissionTable extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                navigationController
+                                    .navigateTo(editPermissionPageRouter);
+                              },
                             ),
                           ),
                         ))),
