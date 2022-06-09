@@ -54,12 +54,29 @@ class PopularFoodDetailPage extends StatelessWidget {
                         children: [
                           const AppIcon(icon: Icons.shopping_cart_outlined),
                           popularProduct.totalItems >= 1
-                              ? const AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
+                              ? Positioned(
+                                  right: 0,
+                                  left: 0,
+                                  child: GestureDetector(
+                                    onTap: () => Get.toNamed(RouteHelper.cart),
+                                    child: const AppIcon(
+                                      icon: Icons.circle,
+                                      size: 20,
+                                      iconColor: Colors.transparent,
+                                      backgroundColor: AppColors.mainColor,
+                                    ),
+                                  ),
                                 )
+                              : Container(),
+                          popularProduct.totalItems >= 1
+                              ? Positioned(
+                                  right: 3,
+                                  left: 3,
+                                  child: BigText(
+                                    text: popularProduct.totalItems.toString(),
+                                    color: Colors.white,
+                                    size: 12,
+                                  ))
                               : Container()
                         ],
                       );

@@ -19,58 +19,60 @@ class RecommendFoodDetailPage extends StatelessWidget {
         Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: 70,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                    onTap: () => Get.toNamed(RouteHelper.getInitial()),
-                    child: const AppIcon(icon: Icons.clear)),
-                const AppIcon(icon: Icons.shopping_cart_outlined)
-              ],
-            ),
-            bottom: PreferredSize(
-              child: Container(
-                child: Center(
-                    child: BigText(
-                  text: product.name!,
-                  size: AppDimension.font26,
-                )),
-                width: double.maxFinite,
-                padding: const EdgeInsets.only(top: 5, bottom: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(AppDimension.radius20),
-                        topRight: Radius.circular(AppDimension.radius20)),
-                    color: Colors.white),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              toolbarHeight: 70,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                      onTap: () => Get.toNamed(RouteHelper.getInitial()),
+                      child: const AppIcon(icon: Icons.clear)),
+                  const AppIcon(icon: Icons.shopping_cart_outlined)
+                ],
               ),
-              preferredSize: const Size.fromHeight(20),
-            ),
-            pinned: true,
-            backgroundColor: AppColors.yellowColor,
-            expandedHeight: 300,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                  '${AppConstants.baseUrl}${AppConstants.uploadUrl}${product.img!}',
+              bottom: PreferredSize(
+                child: Container(
+                  child: Center(
+                      child: BigText(
+                    text: product.name!,
+                    size: AppDimension.font26,
+                  )),
                   width: double.maxFinite,
-                  fit: BoxFit.cover),
-            ),
-          ),
-          SliverToBoxAdapter(
-              child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                    left: AppDimension.width20, right: AppDimension.width20),
-                child: ExpandableTextWidget(text: product.description!),
+                  padding: const EdgeInsets.only(top: 5, bottom: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(AppDimension.radius20),
+                          topRight: Radius.circular(AppDimension.radius20)),
+                      color: Colors.white),
+                ),
+                preferredSize: const Size.fromHeight(20),
               ),
-            ],
-          ))
-        ],
+              pinned: true,
+              backgroundColor: AppColors.yellowColor,
+              expandedHeight: 300,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.network(
+                    '${AppConstants.baseUrl}${AppConstants.uploadUrl}${product.img!}',
+                    width: double.maxFinite,
+                    fit: BoxFit.cover),
+              ),
+            ),
+            SliverToBoxAdapter(
+                child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                      left: AppDimension.width20, right: AppDimension.width20),
+                  child: ExpandableTextWidget(text: product.description!),
+                ),
+              ],
+            ))
+          ],
+        ),
       ),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
@@ -88,7 +90,7 @@ class RecommendFoodDetailPage extends StatelessWidget {
                   icon: Icons.remove,
                   backgroundColor: AppColors.mainColor,
                   iconColor: Colors.white,
-                  iconSize: AppDimension.iconSize25,
+                  iconSize: AppDimension.iconSize24,
                 ),
                 BigText(
                   text: '\$${product.price!} X 0',
@@ -99,7 +101,7 @@ class RecommendFoodDetailPage extends StatelessWidget {
                   icon: Icons.add,
                   backgroundColor: AppColors.mainColor,
                   iconColor: Colors.white,
-                  iconSize: AppDimension.iconSize25,
+                  iconSize: AppDimension.iconSize24,
                 )
               ],
             ),

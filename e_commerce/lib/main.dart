@@ -1,5 +1,6 @@
 import 'package:e_commerce/controller/popular_product_controller.dart';
 import 'package:e_commerce/controller/recommended_product_controller.dart';
+import 'package:e_commerce/pages/cart/cart_page.dart';
 import 'package:e_commerce/pages/food/populate_food_detail.dart';
 import 'package:e_commerce/pages/food/recommend_food_detail.dart';
 import 'package:e_commerce/pages/home/main_food_page.dart';

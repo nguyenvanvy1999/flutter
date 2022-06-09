@@ -29,7 +29,7 @@ class AppDimension {
   static double radius15 = screenHeight / 53.53;
   static double radius30 = screenHeight / 26.77;
 
-  static double iconSize25 = screenHeight / 32.12;
+  static double iconSize24 = screenHeight / 32.12;
   static double iconSize16 = screenHeight / 50.19;
 
   static double listViewImgSize = screenWidth / 3.75;

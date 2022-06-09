@@ -1,5 +1,6 @@
 import 'package:e_commerce/controller/cart_controller.dart';
 import 'package:e_commerce/data/repository/popular_product_repo.dart';
+import 'package:e_commerce/models/cart_model.dart';
 import 'package:e_commerce/models/product_model.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -78,4 +79,6 @@ class PopularProductController extends GetxController {
   int get totalItems {
     return _cart.totalItems;
   }
+
+  List<CartModel> get getItems => _cart.getItems;
 }
