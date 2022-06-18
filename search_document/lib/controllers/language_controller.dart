@@ -6,7 +6,7 @@ import 'dart:ui' as ui;
 
 class LanguageController extends GetxController {
   static LanguageController get to => Get.find();
-  final language = "".obs;
+  final language = ''.obs;
   final store = GetStorage();
 
   String get currentLanguage => language.value;

@@ -24,25 +24,19 @@ class SettingsUI extends StatelessWidget {
       children: <Widget>[
         languageListTile(context),
         themeListTile(context),
-        ListTile(
-            title: Text('settings.updateProfile'.tr),
-            trailing: ElevatedButton(
-              onPressed: () => Get.toNamed(AppRoutes.getUpdateProfileRoute()),
-              child: Text(
-                'settings.updateProfile'.tr,
-              ),
-            )),
-        ListTile(
-          title: Text('settings.signOut'.tr),
-          trailing: ElevatedButton(
-            onPressed: () {
-              AuthController.to.signOut();
-            },
-            child: Text(
-              'settings.signOut'.tr,
-            ),
+        const SizedBox(height: 30),
+        ElevatedButton(
+          onPressed: () => Get.toNamed(AppRoutes.getUpdateProfileRoute()),
+          child: Text('settings.updateProfile'.tr),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            AuthController.to.signOut();
+          },
+          child: Text(
+            'settings.signOut'.tr,
           ),
-        )
+        ),
       ],
     );
   }
@@ -66,21 +60,35 @@ class SettingsUI extends StatelessWidget {
   themeListTile(BuildContext context) {
     final List<MenuOptionsModel> themeOptions = [
       MenuOptionsModel(
-          key: "system", value: 'settings.system'.tr, icon: Icons.brightness_4),
+          key: 'system', value: 'settings.system'.tr, icon: Icons.brightness_4),
       MenuOptionsModel(
-          key: "light", value: 'settings.light'.tr, icon: Icons.brightness_low),
+          key: 'light', value: 'settings.light'.tr, icon: Icons.brightness_low),
       MenuOptionsModel(
-          key: "dark", value: 'settings.dark'.tr, icon: Icons.brightness_3)
+          key: 'dark', value: 'settings.dark'.tr, icon: Icons.brightness_3)
     ];
     return GetBuilder<ThemeController>(
-      builder: (controller) => ListTile(
-        title: Text('settings.theme'.tr),
-        trailing: SegmentedSelector(
-          selectedOption: controller.currentTheme,
-          menuOptions: themeOptions,
-          onValueChanged: (value) {
-            controller.setThemeMode(value);
-          },
+      builder: (controller) => Container(
+        padding: const EdgeInsets.only(left: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'settings.theme'.tr,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16),
+            ),
+            ListTile(
+              trailing: SegmentedSelector(
+                selectedOption: controller.currentTheme,
+                menuOptions: themeOptions,
+                onValueChanged: (value) {
+                  controller.setThemeMode(value);
+                },
+              ),
+            )
+          ],
         ),
       ),
     );

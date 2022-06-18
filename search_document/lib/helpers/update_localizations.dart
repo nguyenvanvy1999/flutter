@@ -10,9 +10,9 @@ void main() {
 
 Future updateLocalizationFile() async {
   //the document id for your google sheet
-  String documentId = "1oS7iJ6ocrZBA53SxRfKF0CG9HAaXeKtzvsTBhgG4Zzk";
+  String documentId = '1xspL6naA-9vfvqEK25zaH37DrUdnKH96mYn78WVjtIg';
   //the sheet id of your google sheet
-  String sheetId = "0";
+  String sheetId = '0';
 
   String phraseKey = '';
   List<LocalizationModel> localizations = [];
@@ -98,13 +98,13 @@ class Localization extends Translations {
         String currentPhraseTextCode = "'$phraseKey': '$phrasePhrase',\n";
         localizationFile = localizationFile + currentPhraseTextCode;
       }
-      String currentLanguageCodeEnding = "},\n";
+      String currentLanguageCodeEnding = '},\n';
       localizationFile = localizationFile + currentLanguageCodeEnding;
     }
-    String fileEnding = """
+    String fileEnding = '''
         };
       }
-      """;
+      ''';
     localizationFile = localizationFile + fileEnding;
 
     stdout.writeln('');
@@ -145,8 +145,8 @@ class LocalizationModel {
   }
 
   Map<String, dynamic> toJson() => {
-        "language": language,
-        "phrases": List<dynamic>.from(phrases.map((x) => x.toJson())),
+        'language': language,
+        'phrases': List<dynamic>.from(phrases.map((x) => x.toJson())),
       };
 }
 
@@ -163,7 +163,7 @@ class PhraseModel {
     );
   }
   Map<String, dynamic> toJson() => {
-        "key": key,
-        "phrase": phrase,
+        'key': key,
+        'phrase': phrase,
       };
 }

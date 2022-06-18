@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 
 class ThemeController extends GetxController {
   static ThemeController get to => Get.find();
-  final theme = "system".obs;
+  final theme = 'system'.obs;
   final store = GetStorage();
   late ThemeMode _themeMode;
 

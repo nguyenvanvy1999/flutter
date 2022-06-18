@@ -148,7 +148,7 @@ class AuthController extends GetxController {
       } catch (err) {
         //not yet working, see this issue https://github.com/delay/flutter_starter/issues/21
         if (err.toString() ==
-            "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
+            '[firebase_auth/email-already-in-use] The email address is already in use by another account.') {
           authUpdateUserNoticeTitle = 'auth.updateUserEmailInUse'.tr;
           authUpdateUserNotice = 'auth.updateUserEmailInUse'.tr;
         } else {
