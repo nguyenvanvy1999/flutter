@@ -10,6 +10,9 @@ class SignUpUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  SignUpUI({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -23,13 +26,13 @@ class SignUpUI extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   LogoGraphicHeader(),
-                  SizedBox(height: 48.0),
+                  const SizedBox(height: 48.0),
                   FormInputFieldWithIcon(
                     controller: authController.nameController,
                     iconPrefix: Icons.person,
                     labelText: 'auth.nameFormField'.tr,
                     validator: Validator().name,
-                    onChanged: (value) => null,
+                    onChanged: (value) => {},
                     onSaved: (value) =>
                         authController.nameController.text = value!,
                   ),
@@ -40,7 +43,7 @@ class SignUpUI extends StatelessWidget {
                     labelText: 'auth.emailFormField'.tr,
                     validator: Validator().email,
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) => null,
+                    onChanged: (value) => {},
                     onSaved: (value) =>
                         authController.emailController.text = value!,
                   ),
@@ -51,7 +54,7 @@ class SignUpUI extends StatelessWidget {
                     labelText: 'auth.passwordFormField'.tr,
                     validator: Validator().password,
                     obscureText: true,
-                    onChanged: (value) => null,
+                    onChanged: (value) => {},
                     onSaved: (value) =>
                         authController.passwordController.text = value!,
                     maxLines: 1,

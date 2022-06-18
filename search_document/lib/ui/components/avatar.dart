@@ -3,9 +3,7 @@ import 'package:search_document/models/models.dart';
 import 'package:search_document/ui/components/components.dart';
 
 class Avatar extends StatelessWidget {
-  Avatar(
-    this.user,
-  );
+  const Avatar(this.user, {Key? key}) : super(key: key);
   final UserModel user;
 
   @override

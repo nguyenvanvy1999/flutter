@@ -11,6 +11,9 @@ class UpdateProfileUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  UpdateProfileUI({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     //print('user.name: ' + user?.value?.name);
     authController.nameController.text =
@@ -30,13 +33,13 @@ class UpdateProfileUI extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   LogoGraphicHeader(),
-                  SizedBox(height: 48.0),
+                  const SizedBox(height: 48.0),
                   FormInputFieldWithIcon(
                     controller: authController.nameController,
                     iconPrefix: Icons.person,
                     labelText: 'auth.nameFormField'.tr,
                     validator: Validator().name,
-                    onChanged: (value) => null,
+                    onChanged: (value) => {},
                     onSaved: (value) =>
                         authController.nameController.text = value!,
                   ),
@@ -47,7 +50,7 @@ class UpdateProfileUI extends StatelessWidget {
                     labelText: 'auth.emailFormField'.tr,
                     validator: Validator().email,
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) => null,
+                    onChanged: (value) => {},
                     onSaved: (value) =>
                         authController.emailController.text = value!,
                   ),
@@ -58,13 +61,13 @@ class UpdateProfileUI extends StatelessWidget {
                         if (_formKey.currentState!.validate()) {
                           SystemChannels.textInput
                               .invokeMethod('TextInput.hide');
-                          UserModel _updatedUser = UserModel(
+                          UserModel updatedUser = UserModel(
                               uid: authController.firestoreUser.value!.uid,
                               name: authController.nameController.text,
                               email: authController.emailController.text,
                               photoUrl:
                                   authController.firestoreUser.value!.photoUrl);
-                          _updateUserConfirm(context, _updatedUser,
+                          _updateUserConfirm(context, updatedUser,
                               authController.firestoreUser.value!.email);
                         }
                       }),
@@ -85,44 +88,45 @@ class UpdateProfileUI extends StatelessWidget {
   Future<void> _updateUserConfirm(
       BuildContext context, UserModel updatedUser, String oldEmail) async {
     final AuthController authController = AuthController.to;
-    final TextEditingController _password = new TextEditingController();
+    final TextEditingController password = TextEditingController();
     return Get.dialog(
       AlertDialog(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0))),
         title: Text(
           'auth.enterPassword'.tr,
         ),
         content: FormInputFieldWithIcon(
-          controller: _password,
+          controller: password,
           iconPrefix: Icons.lock,
           labelText: 'auth.passwordFormField'.tr,
           validator: (value) {
             String pattern = r'^.{6,}$';
             RegExp regex = RegExp(pattern);
-            if (!regex.hasMatch(value!))
+            if (!regex.hasMatch(value!)) {
               return 'validator.password'.tr;
-            else
+            } else {
               return null;
+            }
           },
           obscureText: true,
-          onChanged: (value) => null,
-          onSaved: (value) => _password.text = value!,
+          onChanged: (value) => {},
+          onSaved: (value) => password.text = value!,
           maxLines: 1,
         ),
         actions: <Widget>[
-          new TextButton(
-            child: new Text('auth.cancel'.tr.toUpperCase()),
+          TextButton(
+            child: Text('auth.cancel'.tr.toUpperCase()),
             onPressed: () {
               Get.back();
             },
           ),
-          new TextButton(
-            child: new Text('auth.submit'.tr.toUpperCase()),
+          TextButton(
+            child: Text('auth.submit'.tr.toUpperCase()),
             onPressed: () async {
               Get.back();
               await authController.updateUser(
-                  context, updatedUser, oldEmail, _password.text);
+                  context, updatedUser, oldEmail, password.text);
             },
           )
         ],

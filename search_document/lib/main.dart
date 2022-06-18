@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           locale: languageController.getLocale, // <- Current locale
           navigatorObservers: const [],
           debugShowCheckedModeBanner: false,
-          //defaultTransition: Transition.fade,
+          defaultTransition: Transition.cupertino,
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
           themeMode: ThemeMode.system,

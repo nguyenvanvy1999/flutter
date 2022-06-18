@@ -11,12 +11,12 @@ void main() {
 Future updateLocalizationFile() async {
   //the document id for your google sheet
   String documentId = "1oS7iJ6ocrZBA53SxRfKF0CG9HAaXeKtzvsTBhgG4Zzk";
-  //the sheetid of your google sheet
+  //the sheet id of your google sheet
   String sheetId = "0";
 
-  String _phraseKey = '';
-  List<LocalizationModel> _localizations = [];
-  String _localizationFile = """import 'package:get/get.dart';
+  String phraseKey = '';
+  List<LocalizationModel> localizations = [];
+  String localizationFile = """import 'package:get/get.dart';
 
 class Localization extends Translations {
   @override
@@ -41,7 +41,7 @@ class Localization extends Translations {
 
     final fields = await csv
         .transform(utf8.decoder)
-        .transform(CsvToListConverter(
+        .transform(const CsvToListConverter(
           shouldParseNumbers: false,
         ))
         .toList();
@@ -70,49 +70,49 @@ class Localization extends Translations {
 
       row.forEach((key, value) {
         if (key == 'key') {
-          _phraseKey = value;
+          phraseKey = value;
         } else {
-          bool _languageAdded = false;
-          _localizations.forEach((element) {
+          bool languageAdded = false;
+          for (var element in localizations) {
             if (element.language == key) {
-              element.phrases.add(PhraseModel(key: _phraseKey, phrase: value));
-              _languageAdded = true;
+              element.phrases.add(PhraseModel(key: phraseKey, phrase: value));
+              languageAdded = true;
             }
-          });
-          if (_languageAdded == false) {
-            _localizations.add(LocalizationModel(
+          }
+          if (languageAdded == false) {
+            localizations.add(LocalizationModel(
                 language: key,
-                phrases: [PhraseModel(key: _phraseKey, phrase: value)]));
+                phrases: [PhraseModel(key: phraseKey, phrase: value)]));
           }
         }
       });
     }
 
-    _localizations.forEach((_localization) {
-      String _language = _localization.language;
-      String _currentLanguageTextCode = "'$_language': {\n";
-      _localizationFile = _localizationFile + _currentLanguageTextCode;
-      _localization.phrases.forEach((_phrase) {
-        String _phraseKey = _phrase.key;
-        String _phrasePhrase = _phrase.phrase.replaceAll(r"'", "\\\'");
-        String _currentPhraseTextCode = "'$_phraseKey': '$_phrasePhrase',\n";
-        _localizationFile = _localizationFile + _currentPhraseTextCode;
+    for (var localization in localizations) {
+      String language = localization.language;
+      String currentLanguageTextCode = "'$language': {\n";
+      localizationFile = localizationFile + currentLanguageTextCode;
+      localization.phrases.forEach((_phrase) {
+        String phraseKey = _phrase.key;
+        String phrasePhrase = _phrase.phrase.replaceAll(r"'", "\\\'");
+        String currentPhraseTextCode = "'$phraseKey': '$phrasePhrase',\n";
+        localizationFile = localizationFile + currentPhraseTextCode;
       });
-      String _currentLanguageCodeEnding = "},\n";
-      _localizationFile = _localizationFile + _currentLanguageCodeEnding;
-    });
-    String _fileEnding = """
+      String currentLanguageCodeEnding = "},\n";
+      localizationFile = localizationFile + currentLanguageCodeEnding;
+    }
+    String fileEnding = """
         };
       }
       """;
-    _localizationFile = _localizationFile + _fileEnding;
+    localizationFile = localizationFile + fileEnding;
 
     stdout.writeln('');
     stdout.writeln('---------------------------------------');
     stdout.writeln('Saving localization.g.dart');
     stdout.writeln('---------------------------------------');
     final file = File('localization.g.dart');
-    await file.writeAsString(_localizationFile);
+    await file.writeAsString(localizationFile);
     stdout.writeln('Done...');
   } catch (e) {
     //output error

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:search_document/ui/auth/auth.dart';
 import 'package:get/get.dart';
 import 'package:search_document/ui/components/segmented_selector.dart';
@@ -9,8 +8,7 @@ import 'package:search_document/models/models.dart';
 import 'package:search_document/constants/constants.dart';
 
 class SettingsUI extends StatelessWidget {
-  //final LanguageController languageController = LanguageController.to;
-  //final ThemeController themeController = ThemeController.to;
+  const SettingsUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

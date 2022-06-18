@@ -39,15 +39,14 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
-  handleAuthChanged(_firebaseUser) async {
+  handleAuthChanged(firebaseUser) async {
     //get user data from firestore
-    if (_firebaseUser?.uid != null) {
+    if (firebaseUser?.uid != null) {
       firestoreUser.bindStream(streamFirestoreUser());
       await isAdmin();
     }
 
-    if (_firebaseUser == null) {
-      print('Send to signin');
+    if (firebaseUser == null) {
       Get.offAll(SignInUI());
     } else {
       Get.offAll(HomeUI());
@@ -62,8 +61,6 @@ class AuthController extends GetxController {
 
   //Streams the firestore user from the firestore collection
   Stream<UserModel> streamFirestoreUser() {
-    print('streamFirestoreUser()');
-
     return _db
         .doc('/users/${firebaseUser.value!.uid}')
         .snapshots()
@@ -87,7 +84,6 @@ class AuthController extends GetxController {
       passwordController.clear();
       hideLoadingIndicator();
     } catch (error) {
-      print(error);
       hideLoadingIndicator();
       Get.snackbar('auth.signInErrorTitle'.tr, 'auth.signInError'.tr,
           snackPosition: SnackPosition.BOTTOM,
@@ -105,8 +101,6 @@ class AuthController extends GetxController {
           .createUserWithEmailAndPassword(
               email: emailController.text, password: passwordController.text)
           .then((result) async {
-        print('uID: ' + result.user!.uid.toString());
-        print('email: ' + result.user!.email.toString());
         //get photo url from gravatar if user has one
         Gravatar gravatar = Gravatar(emailController.text);
         String gravatarUrl = gravatar.imageUrl(
@@ -147,14 +141,13 @@ class AuthController extends GetxController {
       try {
         await _auth
             .signInWithEmailAndPassword(email: oldEmail, password: password)
-            .then((_firebaseUser) async {
-          await _firebaseUser.user!
+            .then((firebaseUser) async {
+          await firebaseUser.user!
               .updateEmail(user.email)
-              .then((value) => _updateUserFirestore(user, _firebaseUser.user!));
+              .then((value) => _updateUserFirestore(user, firebaseUser.user!));
         });
       } catch (err) {
-        print('Caught error: $err');
-        //not yet working, see this issue https://github.com/delay/search_document/issues/21
+        //not yet working, see this issue https://github.com/delay/flutter_starter/issues/21
         if (err.toString() ==
             "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
           authUpdateUserNoticeTitle = 'auth.updateUserEmailInUse'.tr;
@@ -171,10 +164,7 @@ class AuthController extends GetxController {
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
           colorText: Get.theme.snackBarTheme.actionTextColor);
     } on PlatformException catch (error) {
-      //List<String> errors = error.toString().split(',');
-      // print("Error: " + errors[1]);
       hideLoadingIndicator();
-      print(error.code);
       String authError;
       switch (error.code) {
         case 'ERROR_WRONG_PASSWORD':

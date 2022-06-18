@@ -5,12 +5,14 @@ import 'package:search_document/ui/ui.dart';
 import 'package:get/get.dart';
 
 class HomeUI extends StatelessWidget {
+  const HomeUI({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AuthController>(
       init: AuthController(),
       builder: (controller) => controller.firestoreUser.value!.uid == null
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : Scaffold(
@@ -18,7 +20,7 @@ class HomeUI extends StatelessWidget {
                 title: Text('home.title'.tr),
                 actions: [
                   IconButton(
-                      icon: Icon(Icons.settings),
+                      icon: const Icon(Icons.settings),
                       onPressed: () {
                         Get.to(SettingsUI());
                       }),
@@ -27,36 +29,28 @@ class HomeUI extends StatelessWidget {
               body: Center(
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 120),
+                    const SizedBox(height: 120),
                     Avatar(controller.firestoreUser.value!),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        FormVerticalSpace(),
+                        const FormVerticalSpace(),
                         Text(
-                            'home.uidLabel'.tr +
-                                ': ' +
-                                controller.firestoreUser.value!.uid,
-                            style: TextStyle(fontSize: 16)),
-                        FormVerticalSpace(),
+                            '${'home.uidLabel'.tr}: ${controller.firestoreUser.value!.uid}',
+                            style: const TextStyle(fontSize: 16)),
+                        const FormVerticalSpace(),
                         Text(
-                            'home.nameLabel'.tr +
-                                ': ' +
-                                controller.firestoreUser.value!.name,
-                            style: TextStyle(fontSize: 16)),
-                        FormVerticalSpace(),
+                            '${'home.nameLabel'.tr}: ${controller.firestoreUser.value!.name}',
+                            style: const TextStyle(fontSize: 16)),
+                        const FormVerticalSpace(),
                         Text(
-                            'home.emailLabel'.tr +
-                                ': ' +
-                                controller.firestoreUser.value!.email,
-                            style: TextStyle(fontSize: 16)),
-                        FormVerticalSpace(),
+                            '${'home.emailLabel'.tr}: ${controller.firestoreUser.value!.email}',
+                            style: const TextStyle(fontSize: 16)),
+                        const FormVerticalSpace(),
                         Text(
-                            'home.adminUserLabel'.tr +
-                                ': ' +
-                                controller.admin.value.toString(),
-                            style: TextStyle(fontSize: 16)),
+                            '${'home.adminUserLabel'.tr}: ${controller.admin.value}',
+                            style: const TextStyle(fontSize: 16)),
                       ],
                     ),
                   ],

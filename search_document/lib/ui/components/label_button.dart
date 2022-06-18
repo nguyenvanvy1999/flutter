@@ -7,17 +7,19 @@ LabelButton(
 */
 
 class LabelButton extends StatelessWidget {
-  LabelButton({required this.labelText, required this.onPressed});
+  const LabelButton(
+      {Key? key, required this.labelText, required this.onPressed})
+      : super(key: key);
   final String labelText;
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      onPressed: onPressed,
       child: Text(
         labelText,
       ),
-      onPressed: onPressed,
     );
   }
 }
