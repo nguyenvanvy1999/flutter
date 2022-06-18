@@ -15,7 +15,6 @@ class UpdateProfileUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //print('user.name: ' + user?.value?.name);
     authController.nameController.text =
         authController.firestoreUser.value!.name;
     authController.emailController.text =

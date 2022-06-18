@@ -139,13 +139,12 @@ class AuthController extends GetxController {
     try {
       showLoadingIndicator();
       try {
-        await _auth
-            .signInWithEmailAndPassword(email: oldEmail, password: password)
-            .then((firebaseUser) async {
-          await firebaseUser.user!
-              .updateEmail(user.email)
-              .then((value) => _updateUserFirestore(user, firebaseUser.user!));
-        });
+        var firebaseUser = await _auth.signInWithEmailAndPassword(
+            email: oldEmail, password: password);
+        await firebaseUser.user!.updateEmail(user.email);
+        await _updateUserFirestore(user, firebaseUser.user!);
+        var newUser = await getFirestoreUser();
+        await handleAuthChanged(newUser);
       } catch (err) {
         //not yet working, see this issue https://github.com/delay/flutter_starter/issues/21
         if (err.toString() ==
@@ -183,7 +182,7 @@ class AuthController extends GetxController {
   }
 
   //updates the firestore user in users collection
-  void _updateUserFirestore(UserModel user, User firebaseUser) {
+  Future<void> _updateUserFirestore(UserModel user, User firebaseUser) async {
     _db.doc('/users/${firebaseUser.uid}').update(user.toJson());
     update();
   }
