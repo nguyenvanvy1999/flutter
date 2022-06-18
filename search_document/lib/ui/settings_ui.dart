@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:search_document/ui/auth/auth.dart';
 import 'package:get/get.dart';
 import 'package:search_document/ui/components/segmented_selector.dart';
 import 'package:search_document/controllers/controllers.dart';
@@ -28,9 +27,7 @@ class SettingsUI extends StatelessWidget {
         ListTile(
             title: Text('settings.updateProfile'.tr),
             trailing: ElevatedButton(
-              onPressed: () async {
-                Get.to(UpdateProfileUI());
-              },
+              onPressed: () => Get.toNamed(AppRoutes.getUpdateProfileRoute()),
               child: Text(
                 'settings.updateProfile'.tr,
               ),

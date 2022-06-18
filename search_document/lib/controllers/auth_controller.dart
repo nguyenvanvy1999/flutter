@@ -49,7 +49,7 @@ class AuthController extends GetxController {
     if (firebaseUser == null) {
       Get.offAll(SignInUI());
     } else {
-      Get.offAll(HomeUI());
+      Get.offAll(const HomeUI());
     }
   }
 

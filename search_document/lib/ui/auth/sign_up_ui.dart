@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:search_document/constants/app_routes.dart';
 import 'package:search_document/ui/components/components.dart';
 import 'package:search_document/helpers/helpers.dart';
 import 'package:search_document/controllers/controllers.dart';
-import 'package:search_document/ui/auth/auth.dart';
 
 class SignUpUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
@@ -36,7 +36,7 @@ class SignUpUI extends StatelessWidget {
                     onSaved: (value) =>
                         authController.nameController.text = value!,
                   ),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   FormInputFieldWithIcon(
                     controller: authController.emailController,
                     iconPrefix: Icons.email,
@@ -47,7 +47,7 @@ class SignUpUI extends StatelessWidget {
                     onSaved: (value) =>
                         authController.emailController.text = value!,
                   ),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   FormInputFieldWithIcon(
                     controller: authController.passwordController,
                     iconPrefix: Icons.lock,
@@ -59,7 +59,7 @@ class SignUpUI extends StatelessWidget {
                         authController.passwordController.text = value!,
                     maxLines: 1,
                   ),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   PrimaryButton(
                       labelText: 'auth.signUpButton'.tr,
                       onPressed: () async {
@@ -69,10 +69,10 @@ class SignUpUI extends StatelessWidget {
                           authController.registerWithEmailAndPassword(context);
                         }
                       }),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   LabelButton(
                     labelText: 'auth.signInLabelButton'.tr,
-                    onPressed: () => Get.to(SignInUI()),
+                    onPressed: () => Get.toNamed(AppRoutes.getSigninRoute()),
                   ),
                 ],
               ),

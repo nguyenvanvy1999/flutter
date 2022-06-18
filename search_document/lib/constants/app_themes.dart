@@ -94,15 +94,14 @@ class AppThemes {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: _lightPrimaryColor,
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       color: _lightBackgroundAppBarColor,
-      iconTheme: IconThemeData(color: _lightTextColor),
-      textTheme: _lightTextTheme,
+      iconTheme: const IconThemeData(color: _lightTextColor),
+      toolbarTextStyle: _lightTextTheme.bodyText2,
+      titleTextStyle: _lightTextTheme.headline6,
     ),
     colorScheme: const ColorScheme.light(
       primary: _lightPrimaryColor,
-      primaryVariant: _lightBackgroundColor,
-      // secondary: _lightSecondaryColor,
     ),
     snackBarTheme: const SnackBarThemeData(
         backgroundColor: _lightBackgroundAlertColor,
@@ -121,7 +120,6 @@ class AppThemes {
         textTheme: ButtonTextTheme.primary),
     unselectedWidgetColor: _lightPrimaryColor,
     inputDecorationTheme: const InputDecorationTheme(
-      //prefixStyle: TextStyle(color: _lightIconColor),
       border: OutlineInputBorder(
           borderSide: BorderSide(width: 1.0),
           borderRadius: BorderRadius.all(
@@ -144,23 +142,8 @@ class AppThemes {
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       fillColor: _lightBackgroundSecondaryColor,
-      //focusColor: _lightBorderActiveColor,
     ),
   );
-
-//text theme for dark theme
-  /*static final TextStyle _darkScreenHeadingTextStyle =
-      _lightScreenHeadingTextStyle.copyWith(color: _darkTextColor);
-  static final TextStyle _darkScreenTaskNameTextStyle =
-      _lightScreenTaskNameTextStyle.copyWith(color: _darkTextColor);
-  static final TextStyle _darkScreenTaskDurationTextStyle =
-      _lightScreenTaskDurationTextStyle;
-  static final TextStyle _darkScreenButtonTextStyle = TextStyle(
-      fontSize: 14.0, color: _darkTextColor, fontWeight: FontWeight.w500);
-  static final TextStyle _darkScreenCaptionTextStyle = TextStyle(
-      fontSize: 12.0,
-      color: _darkBackgroundAppBarColor,
-      fontWeight: FontWeight.w100);*/
 
   static const TextTheme _darkTextTheme = TextTheme(
     headline1: TextStyle(fontSize: 20.0, color: _darkTextColor),
@@ -175,25 +158,17 @@ class AppThemes {
 
   //the dark theme
   static final ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    //primarySwatch: _darkPrimaryColor, //cant be Color on MaterialColor so it can compute different shades.
-    accentColor: _darkPrimaryColor, //prefix icon color form input on focus
-
+    brightness: Brightness.dark, //prefix icon color form input on focus
     fontFamily: font1,
     scaffoldBackgroundColor: _darkBackgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: _darkPrimaryColor,
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       color: _darkBackgroundAppBarColor,
-      iconTheme: IconThemeData(color: _darkTextColor),
-      textTheme: _darkTextTheme,
-    ),
-    colorScheme: const ColorScheme.dark(
-      primary: _darkPrimaryColor,
-      primaryVariant: _darkBackgroundColor,
-
-      // secondary: _darkSecondaryColor,
+      iconTheme: const IconThemeData(color: _darkTextColor),
+      toolbarTextStyle: _darkTextTheme.bodyText2,
+      titleTextStyle: _darkTextTheme.headline6,
     ),
     snackBarTheme: const SnackBarThemeData(
         contentTextStyle: TextStyle(color: Colors.white),
@@ -213,11 +188,10 @@ class AppThemes {
     unselectedWidgetColor: _darkPrimaryColor,
     inputDecorationTheme: const InputDecorationTheme(
       prefixStyle: TextStyle(color: _darkIconColor),
-      //labelStyle: TextStyle(color: nevada),
       border: OutlineInputBorder(
           borderSide: BorderSide(width: 1.0),
           borderRadius: BorderRadius.all(
-            const Radius.circular(8.0),
+            Radius.circular(8.0),
           )),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: _darkBorderColor, width: 1.0),
@@ -236,7 +210,9 @@ class AppThemes {
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       fillColor: _darkInputFillColor,
-      //focusColor: _darkBorderActiveColor,
     ),
+    colorScheme: const ColorScheme.dark(
+      primary: _darkPrimaryColor,
+    ).copyWith(secondary: _darkPrimaryColor),
   );
 }

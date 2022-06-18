@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:search_document/constants/app_routes.dart';
 import 'package:search_document/controllers/controllers.dart';
 import 'package:search_document/ui/components/components.dart';
-import 'package:search_document/ui/ui.dart';
 import 'package:get/get.dart';
 
 class HomeUI extends StatelessWidget {
@@ -21,9 +21,8 @@ class HomeUI extends StatelessWidget {
                 actions: [
                   IconButton(
                       icon: const Icon(Icons.settings),
-                      onPressed: () {
-                        Get.to(SettingsUI());
-                      }),
+                      onPressed: () =>
+                          Get.toNamed(AppRoutes.getSettingsRoute())),
                 ],
               ),
               body: Center(

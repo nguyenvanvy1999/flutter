@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'dart:core';
 import 'package:get/get.dart';
-import 'package:search_document/ui/auth/auth.dart';
+import 'package:search_document/constants/app_routes.dart';
 import 'package:search_document/ui/components/components.dart';
 import 'package:search_document/helpers/helpers.dart';
 import 'package:search_document/controllers/controllers.dart';
@@ -38,7 +38,7 @@ class SignInUI extends StatelessWidget {
                     onSaved: (value) =>
                         authController.emailController.text = value!,
                   ),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   FormInputFieldWithIcon(
                     controller: authController.passwordController,
                     iconPrefix: Icons.lock,
@@ -50,7 +50,7 @@ class SignInUI extends StatelessWidget {
                         authController.passwordController.text = value!,
                     maxLines: 1,
                   ),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   PrimaryButton(
                       labelText: 'auth.signInButton'.tr,
                       onPressed: () async {
@@ -58,14 +58,15 @@ class SignInUI extends StatelessWidget {
                           authController.signInWithEmailAndPassword(context);
                         }
                       }),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   LabelButton(
                     labelText: 'auth.resetPasswordLabelButton'.tr,
-                    onPressed: () => Get.to(ResetPasswordUI()),
+                    onPressed: () =>
+                        Get.toNamed(AppRoutes.getResetPasswordRoute()),
                   ),
                   LabelButton(
                     labelText: 'auth.signUpLabelButton'.tr,
-                    onPressed: () => Get.to(SignUpUI()),
+                    onPressed: () => Get.toNamed(AppRoutes.getSignupRoute()),
                   ),
                 ],
               ),

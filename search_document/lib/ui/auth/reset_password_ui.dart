@@ -37,7 +37,7 @@ class ResetPasswordUI extends StatelessWidget {
                     onSaved: (value) =>
                         authController.emailController.text = value as String,
                   ),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   PrimaryButton(
                       labelText: 'auth.resetPasswordButton'.tr,
                       onPressed: () async {
@@ -45,7 +45,7 @@ class ResetPasswordUI extends StatelessWidget {
                           await authController.sendPasswordResetEmail(context);
                         }
                       }),
-                  FormVerticalSpace(),
+                  const FormVerticalSpace(),
                   signInLink(context),
                 ],
               ),
