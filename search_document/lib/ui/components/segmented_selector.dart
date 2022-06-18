@@ -17,8 +17,8 @@ class SegmentedSelector extends StatelessWidget {
       : super(key: key);
 
   final List<dynamic> menuOptions;
-  final String selectedOption;
   final void Function(dynamic) onValueChanged;
+  final String selectedOption;
 
   @override
   Widget build(BuildContext context) {

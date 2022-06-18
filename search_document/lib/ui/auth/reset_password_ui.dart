@@ -6,10 +6,28 @@ import 'package:search_document/helpers/helpers.dart';
 import 'package:search_document/controllers/controllers.dart';
 
 class ResetPasswordUI extends StatelessWidget {
+  ResetPasswordUI({Key? key}) : super(key: key);
+
   final AuthController authController = AuthController.to;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  ResetPasswordUI({Key? key}) : super(key: key);
+  appBar(BuildContext context) {
+    if (authController.emailController.text == '') {
+      return null;
+    }
+    return AppBar(title: Text('auth.resetPasswordTitle'.tr));
+  }
+
+  signInLink(BuildContext context) {
+    if (authController.emailController.text == '') {
+      return LabelButton(
+        labelText: 'auth.signInonResetPasswordLabelButton'.tr,
+        onPressed: () => Get.offAll(SignInUI()),
+      );
+    }
+    return const SizedBox(width: 0, height: 0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,22 +72,5 @@ class ResetPasswordUI extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  appBar(BuildContext context) {
-    if (authController.emailController.text == '') {
-      return null;
-    }
-    return AppBar(title: Text('auth.resetPasswordTitle'.tr));
-  }
-
-  signInLink(BuildContext context) {
-    if (authController.emailController.text == '') {
-      return LabelButton(
-        labelText: 'auth.signInonResetPasswordLabelButton'.tr,
-        onPressed: () => Get.offAll(SignInUI()),
-      );
-    }
-    return const SizedBox(width: 0, height: 0);
   }
 }

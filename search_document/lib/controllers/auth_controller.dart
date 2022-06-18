@@ -12,14 +12,24 @@ import 'package:search_document/helpers/helpers.dart';
 
 class AuthController extends GetxController {
   static AuthController to = Get.find();
-  TextEditingController nameController = TextEditingController();
+
+  final RxBool admin = false.obs;
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
   Rxn<User> firebaseUser = Rxn<User>();
   Rxn<UserModel> firestoreUser = Rxn<UserModel>();
-  final RxBool admin = false.obs;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  @override
+  void onClose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
 
   @override
   void onReady() async {
@@ -29,14 +39,6 @@ class AuthController extends GetxController {
     firebaseUser.bindStream(user);
 
     super.onReady();
-  }
-
-  @override
-  void onClose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    super.onClose();
   }
 
   handleAuthChanged(firebaseUser) async {
@@ -181,18 +183,6 @@ class AuthController extends GetxController {
     }
   }
 
-  //updates the firestore user in users collection
-  Future<void> _updateUserFirestore(UserModel user, User firebaseUser) async {
-    _db.doc('/users/${firebaseUser.uid}').update(user.toJson());
-    update();
-  }
-
-  //create the firestore user in users collection
-  void _createUserFirestore(UserModel user, User firebaseUser) {
-    _db.doc('/users/${firebaseUser.uid}').set(user.toJson());
-    update();
-  }
-
   //password reset email
   Future<void> sendPasswordResetEmail(BuildContext context) async {
     showLoadingIndicator();
@@ -235,5 +225,17 @@ class AuthController extends GetxController {
     emailController.clear();
     passwordController.clear();
     return _auth.signOut();
+  }
+
+  //updates the firestore user in users collection
+  Future<void> _updateUserFirestore(UserModel user, User firebaseUser) async {
+    _db.doc('/users/${firebaseUser.uid}').update(user.toJson());
+    update();
+  }
+
+  //create the firestore user in users collection
+  void _createUserFirestore(UserModel user, User firebaseUser) {
+    _db.doc('/users/${firebaseUser.uid}').set(user.toJson());
+    update();
   }
 }

@@ -15,11 +15,11 @@ bool isDarkTheme = false;
 bool _loaderShown = false;
 
 class Loading extends StatelessWidget {
-  final Widget? child;
-  final bool darkTheme;
-
   const Loading({Key? key, this.child, this.darkTheme = false})
       : super(key: key);
+
+  final Widget? child;
+  final bool darkTheme;
 
   @override
   Widget build(BuildContext context) {

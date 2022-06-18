@@ -128,9 +128,6 @@ String _uniformizeKey(String key) {
 
 //Localization Model
 class LocalizationModel {
-  final String language;
-  final List<PhraseModel> phrases;
-
   LocalizationModel({
     required this.language,
     required this.phrases,
@@ -144,6 +141,9 @@ class LocalizationModel {
     );
   }
 
+  final String language;
+  final List<PhraseModel> phrases;
+
   Map<String, dynamic> toJson() => {
         'language': language,
         'phrases': List<dynamic>.from(phrases.map((x) => x.toJson())),
@@ -151,9 +151,6 @@ class LocalizationModel {
 }
 
 class PhraseModel {
-  String key;
-  String phrase;
-
   PhraseModel({required this.key, required this.phrase});
 
   factory PhraseModel.fromMap(Map data) {
@@ -162,6 +159,10 @@ class PhraseModel {
       phrase: data['phrase'] ?? '',
     );
   }
+
+  String key;
+  String phrase;
+
   Map<String, dynamic> toJson() => {
         'key': key,
         'phrase': phrase,

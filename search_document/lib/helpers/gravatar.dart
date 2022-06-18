@@ -23,14 +23,14 @@ enum GravatarRating {
 }
 
 class Gravatar {
+  Gravatar(this.email) : hash = _generateHash(email);
+
   final String email;
   final String hash;
 
-  Gravatar(this.email) : hash = _generateHash(email);
-
-  static String _generateHash(String email) {
-    String preparedEmail = email.trim().toLowerCase();
-    return md5.convert(utf8.encode(preparedEmail)).toString();
+  @override
+  String toString() {
+    return imageUrl();
   }
 
   String imageUrl({
@@ -62,9 +62,9 @@ class Gravatar {
     return Uri.https('www.gravatar.com', '/$hash.qr').toString();
   }
 
-  @override
-  String toString() {
-    return imageUrl();
+  static String _generateHash(String email) {
+    String preparedEmail = email.trim().toLowerCase();
+    return md5.convert(utf8.encode(preparedEmail)).toString();
   }
 
   String _imageString(GravatarImage value) {

@@ -8,10 +8,11 @@ import 'package:search_document/helpers/helpers.dart';
 import 'package:search_document/controllers/controllers.dart';
 
 class SignInUI extends StatelessWidget {
-  final AuthController authController = AuthController.to;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   SignInUI({Key? key}) : super(key: key);
+
+  final AuthController authController = AuthController.to;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

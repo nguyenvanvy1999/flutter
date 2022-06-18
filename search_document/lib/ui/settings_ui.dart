@@ -9,38 +9,6 @@ import 'package:search_document/constants/constants.dart';
 class SettingsUI extends StatelessWidget {
   const SettingsUI({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('settings.title'.tr),
-      ),
-      body: _buildLayoutSection(context),
-    );
-  }
-
-  Widget _buildLayoutSection(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        languageListTile(context),
-        themeListTile(context),
-        const SizedBox(height: 30),
-        ElevatedButton(
-          onPressed: () => Get.toNamed(AppRoutes.getUpdateProfileRoute()),
-          child: Text('settings.updateProfile'.tr),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            AuthController.to.signOut();
-          },
-          child: Text(
-            'settings.signOut'.tr,
-          ),
-        ),
-      ],
-    );
-  }
-
   languageListTile(BuildContext context) {
     return GetBuilder<LanguageController>(
       builder: (controller) => ListTile(
@@ -91,6 +59,38 @@ class SettingsUI extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildLayoutSection(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        languageListTile(context),
+        themeListTile(context),
+        const SizedBox(height: 30),
+        ElevatedButton(
+          onPressed: () => Get.toNamed(AppRoutes.getUpdateProfileRoute()),
+          child: Text('settings.updateProfile'.tr),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            AuthController.to.signOut();
+          },
+          child: Text(
+            'settings.signOut'.tr,
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('settings.title'.tr),
+      ),
+      body: _buildLayoutSection(context),
     );
   }
 }

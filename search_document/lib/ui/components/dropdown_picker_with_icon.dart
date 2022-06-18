@@ -15,9 +15,9 @@ class DropdownPickerWithIcon extends StatelessWidget {
       this.onChanged})
       : super(key: key);
 
+  final void Function(String?)? onChanged;
   final List<dynamic> menuOptions;
   final String selectedOption;
-  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {

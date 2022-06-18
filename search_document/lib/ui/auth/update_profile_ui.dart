@@ -8,10 +8,60 @@ import 'package:search_document/helpers/helpers.dart';
 import 'package:search_document/controllers/controllers.dart';
 
 class UpdateProfileUI extends StatelessWidget {
+  UpdateProfileUI({Key? key}) : super(key: key);
+
   final AuthController authController = AuthController.to;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  UpdateProfileUI({Key? key}) : super(key: key);
+  Future<void> _updateUserConfirm(
+      BuildContext context, UserModel updatedUser, String oldEmail) async {
+    final AuthController authController = AuthController.to;
+    final TextEditingController password = TextEditingController();
+    return Get.dialog(
+      AlertDialog(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8.0))),
+        title: Text(
+          'auth.enterPassword'.tr,
+        ),
+        content: FormInputFieldWithIcon(
+          controller: password,
+          iconPrefix: Icons.lock,
+          labelText: 'auth.passwordFormField'.tr,
+          validator: (value) {
+            String pattern = r'^.{6,}$';
+            RegExp regex = RegExp(pattern);
+            if (!regex.hasMatch(value!)) {
+              return 'validator.password'.tr;
+            } else {
+              return null;
+            }
+          },
+          obscureText: true,
+          onChanged: (value) => {},
+          onSaved: (value) => password.text = value!,
+          maxLines: 1,
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('auth.cancel'.tr.toUpperCase()),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          TextButton(
+            child: Text('auth.submit'.tr.toUpperCase()),
+            onPressed: () async {
+              Get.back();
+              await authController.updateUser(
+                  context, updatedUser, oldEmail, password.text);
+            },
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,55 +131,6 @@ class UpdateProfileUI extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Future<void> _updateUserConfirm(
-      BuildContext context, UserModel updatedUser, String oldEmail) async {
-    final AuthController authController = AuthController.to;
-    final TextEditingController password = TextEditingController();
-    return Get.dialog(
-      AlertDialog(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-        title: Text(
-          'auth.enterPassword'.tr,
-        ),
-        content: FormInputFieldWithIcon(
-          controller: password,
-          iconPrefix: Icons.lock,
-          labelText: 'auth.passwordFormField'.tr,
-          validator: (value) {
-            String pattern = r'^.{6,}$';
-            RegExp regex = RegExp(pattern);
-            if (!regex.hasMatch(value!)) {
-              return 'validator.password'.tr;
-            } else {
-              return null;
-            }
-          },
-          obscureText: true,
-          onChanged: (value) => {},
-          onSaved: (value) => password.text = value!,
-          maxLines: 1,
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: Text('auth.cancel'.tr.toUpperCase()),
-            onPressed: () {
-              Get.back();
-            },
-          ),
-          TextButton(
-            child: Text('auth.submit'.tr.toUpperCase()),
-            onPressed: () async {
-              Get.back();
-              await authController.updateUser(
-                  context, updatedUser, oldEmail, password.text);
-            },
-          )
-        ],
       ),
     );
   }

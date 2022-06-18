@@ -3,6 +3,7 @@ import 'package:search_document/controllers/controllers.dart';
 
 class LogoGraphicHeader extends StatelessWidget {
   LogoGraphicHeader({Key? key}) : super(key: key);
+
   final ThemeController themeController = ThemeController.to;
 
   @override

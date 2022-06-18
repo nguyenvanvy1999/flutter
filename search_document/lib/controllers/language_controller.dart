@@ -5,17 +5,18 @@ import 'package:get_storage/get_storage.dart';
 import 'dart:ui' as ui;
 
 class LanguageController extends GetxController {
-  static LanguageController get to => Get.find();
   final language = ''.obs;
   final store = GetStorage();
-
-  String get currentLanguage => language.value;
 
   @override
   void onReady() async {
     //setInitialLocalLanguage();
     super.onInit();
   }
+
+  static LanguageController get to => Get.find();
+
+  String get currentLanguage => language.value;
 
   // Retrieves and Sets language based on device settings
   setInitialLocalLanguage() {

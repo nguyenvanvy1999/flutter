@@ -6,12 +6,15 @@ import 'package:get_storage/get_storage.dart';
 //https://medium.com/swlh/flutter-dynamic-themes-in-3-lines-c3b375f292e3
 
 class ThemeController extends GetxController {
-  static ThemeController get to => Get.find();
-  final theme = 'system'.obs;
   final store = GetStorage();
+  final theme = 'system'.obs;
+
   late ThemeMode _themeMode;
 
+  static ThemeController get to => Get.find();
+
   ThemeMode get themeMode => _themeMode;
+
   String get currentTheme => theme.value;
 
   Future<void> setThemeMode(String value) async {

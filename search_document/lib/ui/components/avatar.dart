@@ -4,6 +4,7 @@ import 'package:search_document/ui/components/components.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar(this.user, {Key? key}) : super(key: key);
+
   final UserModel user;
 
   @override
